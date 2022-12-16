@@ -19,6 +19,7 @@
 
 # RStudio files
 .Rproj.user/
+.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -37,3 +38,12 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# So these macOS hidden files don't get tracked
+.DS_Store
+
+# Don't track data, drone imagery, docs, or figs
+data/*
+drone/*
+docs/*
+figs/*
