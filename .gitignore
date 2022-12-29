@@ -48,3 +48,5 @@ drone/*
 docs/*
 figs/*
 configs/*
+!configs/base.yml
+!configs/derived.yml
