@@ -362,7 +362,7 @@ filterPointsUSGS:
     
 ### c version is with 100 max_neighbors and USGS filter off
 ####CONFIG_0007c####
-run_name: "metashape-version-effect_config_07c_4_4_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_07c_4_4_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -377,7 +377,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0008c####
-run_name: "metashape-version-effect_config_08c_4_4_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_08c_4_4_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -392,7 +392,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0009c####
-run_name: "metashape-version-effect_config_09c_2_4_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_09c_2_4_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -407,7 +407,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0010c####
-run_name: "metashape-version-effect_config_10c_2_4_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_10c_2_4_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -422,7 +422,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0011c####
-run_name: "metashape-version-effect_config_11c_1_4_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_11c_1_4_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -437,7 +437,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0012c####
-run_name: "metashape-version-effect_config_12c_1_4_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_12c_1_4_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -452,7 +452,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0013c####
-run_name: "metashape-version-effect_config_13c_4_2_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_13c_4_2_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -467,7 +467,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0014c####
-run_name: "metashape-version-effect_config_14c_4_2_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_14c_4_2_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -482,7 +482,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0015c####
-run_name: "metashape-version-effect_config_15c_2_2_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_15c_2_2_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -497,7 +497,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0016c####
-run_name: "metashape-version-effect_config_16c_2_2_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_16c_2_2_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -512,7 +512,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0017c####
-run_name: "metashape-version-effect_config_17c_1_2_mild_100_usgs-filter"
+run_name: "metashape-version-effect_config_17c_1_2_mild_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -527,7 +527,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0018c####
-run_name: "metashape-version-effect_config_18c_1_2_moderate_100_usgs-filter"
+run_name: "metashape-version-effect_config_18c_1_2_moderate_100_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -544,7 +544,7 @@ filterPointsUSGS:
 ### d version is with 50 max_neighbors and USGS filter off
 
 ####CONFIG_0007d####
-run_name: "metashape-version-effect_config_07d_4_4_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_07d_4_4_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -559,7 +559,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0008d####
-run_name: "metashape-version-effect_config_08d_4_4_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_08d_4_4_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -574,7 +574,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0009d####
-run_name: "metashape-version-effect_config_09d_2_4_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_09d_2_4_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -589,7 +589,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0010d####
-run_name: "metashape-version-effect_config_10d_2_4_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_10d_2_4_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -604,7 +604,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0011d####
-run_name: "metashape-version-effect_config_11d_1_4_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_11d_1_4_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -619,7 +619,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0012d####
-run_name: "metashape-version-effect_config_12d_1_4_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_12d_1_4_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -634,7 +634,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0013d####
-run_name: "metashape-version-effect_config_13d_4_2_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_13d_4_2_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -649,7 +649,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0014d####
-run_name: "metashape-version-effect_config_14d_4_2_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_14d_4_2_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -664,7 +664,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0015d####
-run_name: "metashape-version-effect_config_15d_2_2_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_15d_2_2_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -679,7 +679,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0016d####
-run_name: "metashape-version-effect_config_16d_2_2_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_16d_2_2_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -694,7 +694,7 @@ filterPointsUSGS:
     enabled: False
     
 ####CONFIG_0017d####
-run_name: "metashape-version-effect_config_17d_1_2_mild_50_usgs-filter"
+run_name: "metashape-version-effect_config_17d_1_2_mild_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -709,7 +709,7 @@ filterPointsUSGS:
     enabled: False
 
 ####CONFIG_0018d####
-run_name: "metashape-version-effect_config_18d_1_2_moderate_50_usgs-filter"
+run_name: "metashape-version-effect_config_18d_1_2_moderate_50_no-usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
