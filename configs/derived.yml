@@ -1,5 +1,5 @@
 ####CONFIG_0007a####
-run_name: "metashape-version-effect_config_07a_4_4_mild_100"
+run_name: "metashape-version-effect_config_07a_4_4_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -10,32 +10,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0007b####
-run_name: "metashape-version-effect_config_07b_4_4_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_007c####
-run_name: "metashape-version-effect_config_07c_4_4_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0008a####
-run_name: "metashape-version-effect_config_08a_4_4_moderate_100"
+run_name: "metashape-version-effect_config_08a_4_4_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -46,32 +25,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0008b####
-run_name: "metashape-version-effect_config_08b_4_4_moderate_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_008c####
-run_name: "metashape-version-effect_config_08c_4_4_moderate_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0009a####
-run_name: "metashape-version-effect_config_09a_2_4_mild_100"
+run_name: "metashape-version-effect_config_09a_2_4_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -82,32 +40,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0009b####
-run_name: "metashape-version-effect_config_09b_2_4_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_009c####
-run_name: "metashape-version-effect_config_09c_2_4_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0010a####
-run_name: "metashape-version-effect_config_10a_2_4_moderate_100"
+run_name: "metashape-version-effect_config_10a_2_4_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -118,34 +55,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0010b####
-run_name: "metashape-version-effect_config_10b_2_4_moderate_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_010c####
-run_name: "metashape-version-effect_config_10c_2_4_moderate_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-###
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0011a####
-run_name: "metashape-version-effect_config_11a_1_4_mild_100"
+run_name: "metashape-version-effect_config_11a_1_4_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -156,32 +70,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0011b####
-run_name: "metashape-version-effect_config_11b_1_4_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_011c####
-run_name: "metashape-version-effect_config_11c_1_4_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0012a####
-run_name: "metashape-version-effect_config_12a_1_4_moderate_100"
+run_name: "metashape-version-effect_config_12a_1_4_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -192,32 +85,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0012b####
-run_name: "metashape-version-effect_config_12b_1_4_moderate_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_012c####
-run_name: "metashape-version-effect_config_12c_1_4_moderate_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0013a####
-run_name: "metashape-version-effect_config_13a_4_2_mild_100"
+run_name: "metashape-version-effect_config_13a_4_2_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -228,32 +100,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0013b####
-run_name: "metashape-version-effect_config_13b_4_2_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_013c####
-run_name: "metashape-version-effect_config_13c_4_2_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0014a####
-run_name: "metashape-version-effect_config_14a_4_2_moderate_100"
+run_name: "metashape-version-effect_config_14a_4_2_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -264,32 +115,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0014b####
-run_name: "metashape-version-effect_config_14b_4_2_moderate_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_014c####
-run_name: "metashape-version-effect_config_14c_4_2_moderate_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0015a####
-run_name: "metashape-version-effect_config_15a_2_2_mild_100"
+run_name: "metashape-version-effect_config_15a_2_2_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -300,32 +130,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0015b####
-run_name: "metashape-version-effect_config_15b_2_2_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_015c####
-run_name: "metashape-version-effect_config_15c_2_2_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0016a####
-run_name: "metashape-version-effect_config_16a_2_2_moderate_100"
+run_name: "metashape-version-effect_config_16a_2_2_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -336,32 +145,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0016b####
-run_name: "metashape-version-effect_config_16b_2_2_moderate_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_016c####
-run_name: "metashape-version-effect_config_16c_2_2_moderate_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0017a####
-run_name: "metashape-version-effect_config_17a_1_2_mild_100"
+run_name: "metashape-version-effect_config_17a_1_2_mild_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -372,32 +160,11 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_0017b####
-run_name: "metashape-version-effect_config_17b_1_2_mild_50"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
-
-####CONFIG_017c####
-run_name: "metashape-version-effect_config_17c_1_2_mild_150"
-
-alignPhotos: # (Metashape: alignPhotos)
-    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
-
-buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
-    ## For depth maps (buldDepthMaps)
-    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
-    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+filterPointsUSGS:
+    enabled: True
 
 ####CONFIG_0018a####
-run_name: "metashape-version-effect_config_18a_1_2_moderate_100"
+run_name: "metashape-version-effect_config_18a_1_2_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -408,8 +175,178 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
+filterPointsUSGS:
+    enabled: True
+
+### b version is with 50 max_neighbors and USGS filter on
+
+####CONFIG_0007b####
+run_name: "metashape-version-effect_config_07b_4_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0008b####
+run_name: "metashape-version-effect_config_08b_4_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0009b####
+run_name: "metashape-version-effect_config_09b_2_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0010b####
+run_name: "metashape-version-effect_config_10b_2_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0011b####
+run_name: "metashape-version-effect_config_11b_1_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+
+####CONFIG_0012b####
+run_name: "metashape-version-effect_config_12b_1_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+
+####CONFIG_0013b####
+run_name: "metashape-version-effect_config_13b_4_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+
+####CONFIG_0014b####
+run_name: "metashape-version-effect_config_14b_4_2_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+
+####CONFIG_0015b####
+run_name: "metashape-version-effect_config_15b_2_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0016b####
+run_name: "metashape-version-effect_config_16b_2_2_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+    
+####CONFIG_0017b####
+run_name: "metashape-version-effect_config_17b_1_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: True
+
 ####CONFIG_0018b####
-run_name: "metashape-version-effect_config_18b_1_2_moderate_50"
+run_name: "metashape-version-effect_config_18b_1_2_moderate_50_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -420,8 +357,177 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
     max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
 
-####CONFIG_018c####
-run_name: "metashape-version-effect_config_18c_1_2_moderate_150"
+filterPointsUSGS:
+    enabled: True
+    
+### c version is with 100 max_neighbors and USGS filter off
+####CONFIG_0007c####
+run_name: "metashape-version-effect_config_07c_4_4_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0008c####
+run_name: "metashape-version-effect_config_08c_4_4_moderate_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0009c####
+run_name: "metashape-version-effect_config_09c_2_4_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0010c####
+run_name: "metashape-version-effect_config_10c_2_4_moderate_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0011c####
+run_name: "metashape-version-effect_config_11c_1_4_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0012c####
+run_name: "metashape-version-effect_config_12c_1_4_moderate_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0013c####
+run_name: "metashape-version-effect_config_13c_4_2_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0014c####
+run_name: "metashape-version-effect_config_14c_4_2_moderate_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0015c####
+run_name: "metashape-version-effect_config_15c_2_2_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0016c####
+run_name: "metashape-version-effect_config_16c_2_2_moderate_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0017c####
+run_name: "metashape-version-effect_config_17c_1_2_mild_100_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0018c####
+run_name: "metashape-version-effect_config_18c_1_2_moderate_100_usgs-filter"
 
 alignPhotos: # (Metashape: alignPhotos)
     downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
@@ -430,4 +536,190 @@ buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) cla
     ## For depth maps (buldDepthMaps)
     downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
     filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
-    max_neighbors: 150 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+    max_neighbors: 100 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+### d version is with 50 max_neighbors and USGS filter off
+
+####CONFIG_0007d####
+run_name: "metashape-version-effect_config_07d_4_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0008d####
+run_name: "metashape-version-effect_config_08d_4_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0009d####
+run_name: "metashape-version-effect_config_09d_2_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0010d####
+run_name: "metashape-version-effect_config_10d_2_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0011d####
+run_name: "metashape-version-effect_config_11d_1_4_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0012d####
+run_name: "metashape-version-effect_config_12d_1_4_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0013d####
+run_name: "metashape-version-effect_config_13d_4_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0014d####
+run_name: "metashape-version-effect_config_14d_4_2_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 4 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0015d####
+run_name: "metashape-version-effect_config_15d_2_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0016d####
+run_name: "metashape-version-effect_config_16d_2_2_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    
+####CONFIG_0017d####
+run_name: "metashape-version-effect_config_17d_1_2_mild_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.MildFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+
+####CONFIG_0018d####
+run_name: "metashape-version-effect_config_18d_1_2_moderate_50_usgs-filter"
+
+alignPhotos: # (Metashape: alignPhotos)
+    downscale: 1 # Recommended: 2. How much to coarsen the photos when searching for tie points. Higher number for blurrier photos or when there are small surfces that may move between photos (such as leaves). Accepts numbers 2^x (and zero) (https://www.agisoft.com/forum/index.php?topic=11697.0).
+
+buildDenseCloud: # (Metashape: buildDepthMaps, buildDenseCloud, (optionally) classifyGroundPoints, and exportPoints)
+    ## For depth maps (buldDepthMaps)
+    downscale: 2 # Recommended: 2. How much to coarsen the photos when searching for matches to build the dense cloud. For large photosets, values < 4 likely take prohibitively long. Accepts numbers 2^x (https://www.agisoft.com/forum/index.php?topic=11697.0).
+    filter_mode: Metashape.ModerateFiltering # Recommended: Metashape.MildFiltering. How to filter the point cloud. Options are NoFiltering, MildFiltering, ModerateFiltering, AggressiveFiltering. Aggressive filtering removes detail and makes worse DEMs (at least for forest). NoFiltering takes very long. In trials, it never completed.
+    max_neighbors: 50 # Recommended: 100. Maximum number of neighboring photos to use for estimating point cloud. Higher numbers may increase accuracy but dramatically increase processing time.
+
+filterPointsUSGS:
+    enabled: False
+    

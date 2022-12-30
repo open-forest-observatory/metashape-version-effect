@@ -47,7 +47,7 @@ nofix_accuracy: 25
 
 # To use GCPs, a 'gcps' folder must exist in the top level photos folder. The contents of the 'gcps' folder are created by the prep_gcps.R script. See readme: https://github.com/ucdavis/metashape
 addGCPs:
-    enabled: False
+    enabled: True
     gcp_crs: "EPSG::26910" # CRS EPSG code of GCP coordinates. 26910 (UTM 10 N) is the CRS of the sample RGB photoset.
     marker_location_accuracy: 0.1 # Recommended: 0.1. Accuracy of GCPs real-world coordinates, in meters.
     marker_projection_accuracy: 8 # Recommended: 8. Accuracy of the identified locations of the GCPs within the images, in pixels.

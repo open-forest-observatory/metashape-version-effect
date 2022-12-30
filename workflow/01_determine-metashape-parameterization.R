@@ -25,18 +25,23 @@ young2022 <-
 
 # For each of these combinations, we also added three different values of the
 # BuildDenseCloud "max_neighbors" parameter
+extra_params <-
+  tidyr::expand_grid(max_neighbors = c(100, 50),
+                     usgs_flag = c(TRUE, FALSE))
 
 metashape_version_effect_recipe <-
-  tidyr::expand_grid(young2022, data.frame(max_neighbors = c(100, 50, 150))) %>% 
-  dplyr::mutate(id = dplyr::case_when(max_neighbors == 50 ~ paste0(sprintf("%02d", id), "a"),
-                                      max_neighbors == 100 ~ paste0(sprintf("%02d", id), "b"),
-                                      max_neighbors == 150 ~ paste0(sprintf("%02d", id), "c"))) %>% 
+  tidyr::expand_grid(young2022, extra_params) %>% 
+  dplyr::mutate(id = dplyr::case_when(max_neighbors == 100 & usgs_flag ~ paste0(sprintf("%02d", id), "a"),
+                                      max_neighbors == 100 & !usgs_flag ~ paste0(sprintf("%02d", id), "b"),
+                                      max_neighbors == 50 & usgs_flag ~ paste0(sprintf("%02d", id), "c"),
+                                      max_neighbors == 50 & !usgs_flag ~ paste0(sprintf("%02d", id), "d"))) %>% 
   dplyr::mutate(run_name = paste("metashape-version-effect_config", 
                                  id, 
                                  photo_downscale,
                                  cloud_downscale,
                                  depth_filtering,
                                  max_neighbors,
+                                 ifelse(usgs_flag, "usgs-filter", "no-usgs-filter"),
                                  sep = "_"))
 
 system2(command = "Rscript", args = paste(file.path(am_dir, "R", "prep_configs.R"), 
