@@ -20,7 +20,7 @@ source(here("workflow/convenience-functions.R"))
 CHM_DIR = datadir("meta200/drone/L2/")
 
 #### Project area boundary ####
-focal_area = st_read(data("study_area_perimeter/ground_map_mask.geojson")) %>% st_transform(32610)
+focal_area = st_read(data("study-area-perimeter/ground_map_mask.geojson")) %>% st_transform(32610)
 
 
 #### DTM
