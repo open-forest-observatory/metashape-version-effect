@@ -4,7 +4,7 @@ library(terra)
 
 #### Get data dir ####
 # The root of the data directory
-data_dir = readLines(here("data_dir.txt"), n=1)
+data_dir = readLines(here("data-dir.txt"), n=1)
 
 #### Convenience functions and main functions ####
 source(here("workflow/convenience-functions.R"))
@@ -20,8 +20,21 @@ chm_file = chm_files[1]
 
 chm = rast(chm_file)
 
-# variable window size
-f <- function(x) { x * 0.07 + 3 }
+# Function to make a vwf with a specific slope and intercept
+make_window_size_function <- function(a, b) { 
+  vwf = function(x) {
+    y = a + b*x
+  }
+}
+  
+  
 ttops <- locate_trees(chm, lmf(f, shape="circular"))
+
+
+
+## Create ttops with many different parameter values
+
+
+
 
 

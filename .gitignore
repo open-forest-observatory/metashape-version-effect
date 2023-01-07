@@ -47,3 +47,6 @@ data/*
 drone/*
 docs/*
 figs/*
+
+# Don't track data_dir.txt (this is user-specific)
+/data-dir.txt

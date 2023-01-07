@@ -9,7 +9,7 @@ library(terra)
 
 #### Get data dir ####
 # The root of the data directory
-data_dir = readLines(here("data_dir.txt"), n=1)
+data_dir = readLines(here("data-dir.txt"), n=1)
 
 #### Convenience functions and main functions ####
 source(here("workflow/convenience-functions.R"))
