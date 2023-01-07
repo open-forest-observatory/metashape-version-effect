@@ -11,7 +11,7 @@ data_dir = readLines(here("data-dir.txt"), n=1)
 #### Convenience functions and main functions ####
 source(here("workflow/convenience-functions.R"))
 
-set_lidr_threads(2)
+set_lidr_threads(32)
 
 
 
@@ -32,13 +32,11 @@ chm = rast(chm_file)
 make_vwf <- function(intercept, slope) { 
   vwf = function(x) {
     y = intercept + slope*x
+    y = pmax(y, 0.12, na.rm=TRUE) # can't go smaller than chm resolution (chm resolution is 0.12 m)
     return(y)
   }
   return(vwf)
 }
-
-vwf = make_vwf(intercept = 3, slope = 0.07)
-
 
 ## Create different sets of ttops with many different sets of VWF parameters
 
@@ -46,6 +44,7 @@ intercepts = seq(0, 10, by = 2)
 slopes = seq(0,0.5, by = 0.05)
 
 vwfparams = expand.grid(intercept = intercepts,slope = slopes)
+vwfparams = vwfparams[-1,] # remove the first one which makes the window size 0 everywhere
 
 
 for(i in 1:nrow(vwfparams)) {
@@ -62,7 +61,7 @@ for(i in 1:nrow(vwfparams)) {
   
   # create dir if doesn't exist, then save
   if(!dir.exists(ttops_dir)) dir.create(ttops_dir, recursive=TRUE)
-  st_write(ttops, file_path)
+  st_write(ttops, file_path, delete_dsn = TRUE)
 
 }
 
