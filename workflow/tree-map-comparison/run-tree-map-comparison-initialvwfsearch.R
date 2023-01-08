@@ -28,16 +28,16 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-eval-initialvwfsearch")
+output_dir = datadir("meta200/itd-eval-initialsmoothvwfsearch_meta-16a")
 
 # Location of the predicted tree maps to evaluate
-predicted_trees_path = datadir("meta200/drone/L3/ttops_initialvwfsearch/")
+predicted_trees_path = datadir("meta200/drone/L3/ttops_initialsmoothvwfsearch_meta-16a/")
 
 # Maximum number of predicted trees, beyond which consider it an extremely poor tree detection and skip it
-MAX_PREDICTED_TREES = 10000
+MAX_PREDICTED_TREES = 50000
 
 # Number of cores to parallelize across
-ncores = 4
+ncores = 8
 
 
 #### BEGIN STEM MAP COMPARISON WORKFLOW ####
@@ -49,7 +49,7 @@ prep_observed_tree_map_for_comparison(observed_trees_filepath = observed_trees_f
                                       internal_plot_buffer_dist = 5) # By how many meters to buffer in from the plot edge when computing precision and recall to ensure all predicted trees have a fair chance to match to an observed tree
 
 
-# Open the observed trees to see how many there are
+# Open the observed trees to see how many there are overall and in the internal area (used to exclude predicted tree sets if there are many more predicted than observed trees)
 observed_trees = st_read(observed_trees_filepath)
 observed_trees_internal = observed_trees[observed_trees$internal_area == TRUE, ]
 
