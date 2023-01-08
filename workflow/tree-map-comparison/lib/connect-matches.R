@@ -4,6 +4,7 @@ connect_matched_trees <- function(observed_trees,
                                   predicted_trees,
                                   predicted_tree_dataset_name,
                                   output_dir) {
+  
   matched_observed_trees <-
     observed_trees[!is.na(observed_trees$final_predicted_tree_match_id), ]
   
@@ -33,7 +34,7 @@ connect_matched_trees <- function(observed_trees,
     dplyr::select(observed_tree_id, predicted_tree_id)
   
   output_dir <- paste0(
-    output_dir, "/pedicted_observed_pairing_lines/"
+    output_dir, "/predicted_observed_pairing_lines/"
   )
   if (!dir.exists(output_dir)) dir.create(output_dir, recursive = T)
   

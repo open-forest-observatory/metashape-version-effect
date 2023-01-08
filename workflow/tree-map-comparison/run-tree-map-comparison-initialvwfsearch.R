@@ -5,32 +5,41 @@ library(here)
 
 #### Get data dir ####
 # The root of the data directory
-data_dir = readLines(here("data_dir.txt"), n=1)
+data_dir = readLines(here("data-dir.txt"), n=1)
 
 ## Conveinence functions ##
 # Most importantly, this defines a function 'datadir' that prepends any relative file path with the absolute path to the data directory (specified in data-dir.txt)
-source(here("scripts/convenience-functions.R"))
+source(here("workflow/convenience-functions.R"))
 
 ## Function definitions
-source("scripts/tree-map-comparison/lib/prep-tree-maps.R")
-source("scripts/tree-map-comparison/lib/match-trees.R")
-source("scripts/tree-map-comparison/lib/tree-det-stats.R")
-source("scripts/tree-map-comparison/lib/connect-matches.R")
-source("scripts/tree-map-comparison/lib/area-based-stats.R")
-source("scripts/tree-map-comparison/lib/combine-stats-make-corr-plots.R")
+source("workflow/tree-map-comparison/lib/prep-tree-maps.R")
+source("workflow/tree-map-comparison/lib/match-trees.R")
+source("workflow/tree-map-comparison/lib/tree-det-stats.R")
+source("workflow/tree-map-comparison/lib/connect-matches.R")
+source("workflow/tree-map-comparison/lib/area-based-stats.R")
+source("workflow/tree-map-comparison/lib/combine-stats-make-corr-plots.R")
 
 # Path to the observed (reference) stem map. It is assumed that this stem map includes exhaustive survey of trees with heights down to 50% of the minimum height class evaluated (currently hard-coded at 10 m, so heights down to at least 5 m). If the dataset has smaller trees, removing them first will make this run faster.
 #    If you wish to include matching for "overstory trees only", this stem map should be pre-attributed with a column called "under-neighbor" that indicates whether a tree is understory or overstory.
 #    This attribution is performed by the script scripts/ground_stem_map_assign_under_neighbor.R
-observed_trees_filepath = datadir("ground_truth_stem_map/rectified/ept_trees_01_rectified.geojson")
-# Path to the predicted (drone) stem map. It is assumed that this stem map includes trees with heights down to 50% of the minimum height class evaluated (currently hard-coded at 10 m, so heights down to at last 5 m). If the dataset has smaller trees, removing them first will make this run faster.
-predicted_trees_filepath = datadir("detected_trees_example/paramset14_1016_20201021T0648_dsm_chm-vwf_196.geojson")
+observed_trees_filepath = datadir("ground-truth-stem-map/rectified/ept_trees_01_rectified.geojson")
 # Path to the field plot boundary. This defines the outer edge of the field (observed trees) plot. It is assumed that the predicted tree stem map extends at least to this boundary if not beyond.
-plot_bound_filepath =  datadir("study_area_perimeter/ground_map_mask_precise.geojson")
+plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geojson")
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("comparison-output")
+output_dir = datadir("itd-eval-initialvwfsearch")
+
+
+
+
+predicted_ttop_files = list.files(datadir("meta200/drone/L3/ttops_initialvwfsearch/"), full.names = TRUE)
+
+
+# Path to the predicted (drone) stem map. It is assumed that this stem map includes trees with heights down to 50% of the minimum height class evaluated (currently hard-coded at 10 m, so heights down to at last 5 m). If the dataset has smaller trees, removing them first will make this run faster.
+predicted_trees_filepath = predicted_ttop_files[33]
+
+
 
 
 #### BEGIN STEM MAP COMPARISON WORKFLOW ####
