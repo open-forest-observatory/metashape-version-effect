@@ -17,7 +17,7 @@ write_csv_to_dir = function(dataframe, output_dir, output_filename) {
 # Function computes the slope b by fitting the equation Y = a + bX
 # using OLS.
 get_slope <- function(y, x) {
-  if (length(x) == 0) {
+  if (length(x) == 0 | length(y) == 0) {
     return(NA)
   }
   m <- lm(y ~ x)
@@ -176,14 +176,14 @@ tree_det_stats <- function(tmp_dir,
     dir.create(output_dir)
   
     predicted_trees <- st_read(predicted_trees_filepath)
-
+    
     predicted_tree_dataset_name <-
         tools::file_path_sans_ext(basename(predicted_trees_filepath))
-
+    
     # Collect the predicted tree GPKGs (located in the interim files location) from
-    # stem map comparison for all and overstory tree category
+    # stem map comparison for all and overstory tree category (should be two files)
     map_files <- list.files(tmp_dir,
-        full.names = TRUE, pattern = "*.gpkg$"
+        full.names = TRUE, pattern = paste0(".*", predicted_tree_dataset_name,".*.gpkg$")
     )
 
     match_stats_i <- list()

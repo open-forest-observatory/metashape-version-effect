@@ -104,7 +104,6 @@ match_trees <- function(observed_trees_filepath,
                         search_distance_fun_slope,
                         search_distance_fun_intercept) {
   
-  
   observed_trees = st_read(observed_trees_filepath)
   predicted_trees = st_read(predicted_trees_filepath)
   
