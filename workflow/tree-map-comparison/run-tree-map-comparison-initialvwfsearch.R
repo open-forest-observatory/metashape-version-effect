@@ -102,7 +102,6 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
     }
     
     
-    
     # This function saves (in tmp_dir) a gpkg of the observed trees, with a column indicating which predicted tree (if any) it was matched to
     match_trees(observed_trees_filepath = observed_trees_filepath,
                 predicted_trees_filepath = predicted_trees_filepath,
