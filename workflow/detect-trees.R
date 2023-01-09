@@ -3,17 +3,30 @@ library(here)
 library(terra)
 library(tidyverse)
 library(sf)
+library(furrr)
 
 #### Get data dir ####
 # The root of the data directory
 data_dir = readLines(here("data-dir.txt"), n=1)
 
-#### Convenience functions and main functions ####
+# Load convenience functions including 'datadir'#
 source(here("workflow/convenience-functions.R"))
 
-set_lidr_threads(64)
+### CONSTANTS ###
 
-chm_files = list.files(datadir("meta200/drone/L2"), pattern="chm.tif", full.names=TRUE)
+# Maximum number of detected trees that is at all reasonable. If more than this are detected, the results will not be saved (to save on file storage)
+MAX_TREE_COUNT = 50000
+
+## Specify the different sets of VWF parameters as fully factorial combo of the following parameters
+# Param ranges for initial search:
+intercepts = seq(0, 4, by = 0.5)
+slopes = seq(0,0.2, by = 0.02)
+window_mins = 0.12
+window_maxs = 100
+smooths = c(0, 11)
+
+## Specify output dir
+ttops_dir = datadir("meta200/drone/L3/ttops_secondvwfsearch-test6_meta-08a16a/")
 
 
 ### Convenience functions for formatting numbers in filenames
@@ -34,6 +47,8 @@ pad_3dec = function(x) {
 
 
 
+### Busines logic functions ###
+
 # Function to make a vwf with a specified slope and intercept
 make_vwf <- function(intercept, slope, window_min, window_max) { 
   vwf = function(x) {
@@ -45,23 +60,11 @@ make_vwf <- function(intercept, slope, window_min, window_max) {
   return(vwf)
 }
 
-## Create different sets of ttops with many different sets of VWF parameters
-
-# Param ranges for initial search:
-intercepts = seq(0, 4, by = 0.5)
-slopes = seq(0,0.2, by = 0.02)
-window_mins = 0.12
-window_maxs = 100
-smooths = c(0, 11)
-
 vwfparams = expand.grid(intercept = intercepts,slope = slopes, window_min = window_mins, window_max = window_maxs, smooth = smooths)
 vwfparams = vwfparams[!(vwfparams$intercept == 0 & vwfparams$slope == 0),] # remove ones with intercept and slope both == 0
 
-
-chm_files = chm_files[c(5,37)]
-
-
-for(chm_file in chm_files) {
+# Function (to use with 'walk' or parallel 'future_walk') for detecing trees from one chm file, using all vwf parameter sets
+itd_onechm_allvwfs = function(chm_file) {
   
   # Get CHM ID
   file_minus_extension = str_sub(chm_file,1,-5)
@@ -84,9 +87,8 @@ for(chm_file in chm_files) {
   }
   
   # Loop through all the sets of VWF tree detection parameters and run ITD for each one on the current CHM
-  for(i in 1:nrow(vwfparams)) {
+  itd_onevwfparamset = function(focal_vwfparams) {
     
-    focal_vwfparams = vwfparams[i,]
     vwf = make_vwf(intercept = focal_vwfparams$intercept, slope = focal_vwfparams$slope, window_min = focal_vwfparams$window_min, window_max = focal_vwfparams$window_max)
     
     ## load the right CHM
@@ -94,14 +96,37 @@ for(chm_file in chm_files) {
     
     ttops = locate_trees(chm_foc, lmf(vwf, shape="circular"))
     
+    # if there are too many ttops, don't save them
+    if(nrow(ttops) > MAX_TREE_COUNT) {
+      return(FALSE)
+    }
+    
     # save these ttops
-    ttops_dir = datadir("meta200/drone/L3/ttops_secondvwfsearch_meta-08a16a/")
     filename = paste0("ttops_", chm_name, "_", focal_vwfparams$intercept |> pad_3dec(), "_", focal_vwfparams$slope |> pad_3dec(), "_", focal_vwfparams$window_min |> pad_3dec(), "_", focal_vwfparams$window_max |> pad_3dec(), "_", focal_vwfparams$smooth |> pad_2dig(), ".gpkg")
     file_path = paste0(ttops_dir, filename)
     
-    # create dir if doesn't exist, then save
-    if(!dir.exists(ttops_dir)) dir.create(ttops_dir, recursive=TRUE)
+    # save
     st_write(ttops, file_path, delete_dsn = TRUE)
-  
   }
+  
+  vwfparams_list = split(vwfparams, seq(nrow(vwfparams))) # make into a list of single-row DFs to use in 'walk' function
+  walk(vwfparams_list, itd_onevwfparamset) # can't parallelize due to the SpatRaster in memory (file pointer)
+
 }
+
+### Run the process ###
+
+# Create output dir if doesn't exist
+if(!dir.exists(ttops_dir)) dir.create(ttops_dir, recursive=TRUE)
+
+# Load the CHM files to use for ITD
+chm_files = list.files(datadir("meta200/drone/L2"), pattern="chm.tif", full.names=TRUE)
+# FOR TESTING: chm_files = chm_files[c(5,37)]
+chm_files_list = as.list(chm_files)
+
+set_lidr_threads(1) # Set to 1 because we're going to parallelize across ITD runs, not within them (the latter has more overhead of reading/writing files that isn't parallelized)
+
+# Run in parallel
+furrr_options(scheduling = Inf)
+plan(multisession)
+future_walk(chm_files_list,itd_onechm_allvwfs)
