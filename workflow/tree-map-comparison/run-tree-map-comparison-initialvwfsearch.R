@@ -28,16 +28,13 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-eval-initialsmoothvwfsearch_meta-16a")
+output_dir = datadir("meta200/itd-eval-secondvwfsearch_meta-08a16a")
 
 # Location of the predicted tree maps to evaluate
-predicted_trees_path = datadir("meta200/drone/L3/ttops_initialsmoothvwfsearch_meta-16a/")
+predicted_trees_path = datadir("meta200/drone/L3/ttops_secondvwfsearch_meta-08a16a/")
 
 # Maximum number of predicted trees, beyond which consider it an extremely poor tree detection and skip it
 MAX_PREDICTED_TREES = 50000
-
-# Number of cores to parallelize across
-ncores = 8
 
 
 #### BEGIN STEM MAP COMPARISON WORKFLOW ####
@@ -138,7 +135,7 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
 
 predicted_ttop_files = list.files(predicted_trees_path, full.names = TRUE)
 
-plan(multisession, workers = ncores)
+plan(multisession)
 furrr_options(scheduling = Inf)
 future_walk(predicted_ttop_files, eval_one_predicted_set)
 
