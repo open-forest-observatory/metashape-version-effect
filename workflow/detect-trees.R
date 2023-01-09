@@ -18,15 +18,22 @@ source(here("workflow/convenience-functions.R"))
 MAX_TREE_COUNT = 50000
 
 ## Specify the different sets of VWF parameters as fully factorial combo of the following parameters
-# Param ranges for initial search:
-intercepts = seq(0, 4, by = 0.5)
-slopes = seq(0,0.2, by = 0.02)
+
+intercepts = seq(0, 2.5, by = 0.25)
+slopes = seq(0,0.1, by = 0.01)
 window_mins = 0.12
 window_maxs = 100
-smooths = c(0, 11)
+smooths = c(0, 3, 7, 11)
+
+# # Param ranges for initial search:
+# intercepts = seq(0, 4, by = 0.5)
+# slopes = seq(0,0.2, by = 0.02)
+# window_mins = 0.12
+# window_maxs = 100
+# smooths = c(0, 11)
 
 ## Specify output dir
-ttops_dir = datadir("meta200/drone/L3/ttops_secondvwfsearch-test6_meta-08a16a/")
+ttops_dir = datadir("meta200/drone/L3/ttops_fullrun01/")
 
 
 ### Convenience functions for formatting numbers in filenames
@@ -59,9 +66,6 @@ make_vwf <- function(intercept, slope, window_min, window_max) {
   }
   return(vwf)
 }
-
-vwfparams = expand.grid(intercept = intercepts,slope = slopes, window_min = window_mins, window_max = window_maxs, smooth = smooths)
-vwfparams = vwfparams[!(vwfparams$intercept == 0 & vwfparams$slope == 0),] # remove ones with intercept and slope both == 0
 
 # Function (to use with 'walk' or parallel 'future_walk') for detecing trees from one chm file, using all vwf parameter sets
 itd_onechm_allvwfs = function(chm_file) {
@@ -118,6 +122,10 @@ itd_onechm_allvwfs = function(chm_file) {
 
 # Create output dir if doesn't exist
 if(!dir.exists(ttops_dir)) dir.create(ttops_dir, recursive=TRUE)
+
+# Create factorial combo of vwf params
+vwfparams = expand.grid(intercept = intercepts,slope = slopes, window_min = window_mins, window_max = window_maxs, smooth = smooths)
+vwfparams = vwfparams[!(vwfparams$intercept == 0 & vwfparams$slope == 0),] # remove ones with intercept and slope both == 0
 
 # Load the CHM files to use for ITD
 chm_files = list.files(datadir("meta200/drone/L2"), pattern="chm.tif", full.names=TRUE)
