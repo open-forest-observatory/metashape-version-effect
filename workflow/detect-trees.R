@@ -35,6 +35,9 @@ smooths = c(0, 3, 7, 11)
 ## Specify output dir
 ttops_dir = datadir("meta200/drone/L3/ttops_fullrun01/")
 
+## Get the file listing of the output dir (to determine if a file we aim to produce already exists)
+ttops_dir_contents = list.files(ttops_dir, full.names=TRUE)
+
 
 ### Convenience functions for formatting numbers in filenames
 
@@ -75,6 +78,18 @@ itd_onechm_allvwfs = function(chm_file) {
   fileparts = str_split(file_minus_extension,fixed("/"))[[1]]
   chm_name = fileparts[length(fileparts)] #take the last part of the path (the filename)
   
+  ## See if it's already been run completely for this CHM, and if so, skip
+  # How many output files should there be for this chm?
+  n_ttop_output_files_expected = nrow(vwfparams)
+  # How many output files exist matching this CHM name?
+  n_ttop_output_files_actual = sum(grepl(chm_name, ttops_dir_contents))
+  
+  if(n_ttop_output_files_actual == n_ttop_output_files_expected) {
+    cat("CHM already processed:", chm_name, " -- Skipping.")
+    return(TRUE)
+  }
+  
+  
   chm = rast(chm_file)
   
   ## Create the needed smoothed CHMs so we only do it once per smooth, not once for each parameter set
@@ -93,6 +108,16 @@ itd_onechm_allvwfs = function(chm_file) {
   # Loop through all the sets of VWF tree detection parameters and run ITD for each one on the current CHM
   itd_onevwfparamset = function(focal_vwfparams) {
     
+    # Filename / path to save to
+    filename = paste0("ttops_", chm_name, "_", focal_vwfparams$intercept |> pad_3dec(), "_", focal_vwfparams$slope |> pad_3dec(), "_", focal_vwfparams$window_min |> pad_3dec(), "_", focal_vwfparams$window_max |> pad_3dec(), "_", focal_vwfparams$smooth |> pad_2dig(), ".gpkg")
+    file_path = paste0(ttops_dir, filename)
+    
+    ## Does the output exist already? Skip if so
+    if(file_path %in% ttops_dir_contents) {
+      cat("File", file_path, "already exists. Skipping.")
+      return(TRUE)
+    }
+    
     vwf = make_vwf(intercept = focal_vwfparams$intercept, slope = focal_vwfparams$slope, window_min = focal_vwfparams$window_min, window_max = focal_vwfparams$window_max)
     
     ## load the right CHM
@@ -100,21 +125,19 @@ itd_onechm_allvwfs = function(chm_file) {
     
     ttops = locate_trees(chm_foc, lmf(vwf, shape="circular"))
     
-    # if there are too many ttops, don't save them
+    # if there are too many ttops, don't save them, but write a placeholder file so we don't try again
     if(nrow(ttops) > MAX_TREE_COUNT) {
+      filepath_placeholder = str_replace(file_path,".gpkg$", ".txt_placeholder")
+      write("Dummy placeholder because ttops predicted were unrealistic so not worth saving the file.", file = filepath_placeholder)
       return(FALSE)
     }
-    
-    # save these ttops
-    filename = paste0("ttops_", chm_name, "_", focal_vwfparams$intercept |> pad_3dec(), "_", focal_vwfparams$slope |> pad_3dec(), "_", focal_vwfparams$window_min |> pad_3dec(), "_", focal_vwfparams$window_max |> pad_3dec(), "_", focal_vwfparams$smooth |> pad_2dig(), ".gpkg")
-    file_path = paste0(ttops_dir, filename)
     
     # save
     st_write(ttops, file_path, delete_dsn = TRUE)
   }
   
   vwfparams_list = split(vwfparams, seq(nrow(vwfparams))) # make into a list of single-row DFs to use in 'walk' function
-  walk(vwfparams_list, itd_onevwfparamset) # can't parallelize due to the SpatRaster in memory (file pointer)
+  walk(vwfparams_list, itd_onevwfparamset) # can't parallelize due to the SpatRaster not in memory (file pointer)
 
 }
 
