@@ -37,6 +37,8 @@ ttops_dir = datadir("meta200/drone/L3/ttops_fullrun01/")
 
 ## Get the file listing of the output dir (to determine if a file we aim to produce already exists)
 ttops_dir_contents = list.files(ttops_dir, full.names=TRUE)
+# remove double slsahes
+ttops_dir_contents = str_replace(ttops_dir_contents, fixed("//"), "/")
 
 
 ### Convenience functions for formatting numbers in filenames
@@ -133,7 +135,7 @@ itd_onechm_allvwfs = function(chm_file) {
     }
     
     # save
-    st_write(ttops, file_path, delete_dsn = TRUE)
+    st_write(ttops, file_path)
   }
   
   vwfparams_list = split(vwfparams, seq(nrow(vwfparams))) # make into a list of single-row DFs to use in 'walk' function
