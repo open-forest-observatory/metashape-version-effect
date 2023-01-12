@@ -28,10 +28,10 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-eval-secondvwfsearch_meta-08a16a")
+output_dir = datadir("meta200/itd-eval-fullrun01")
 
 # Location of the predicted tree maps to evaluate
-predicted_trees_path = datadir("meta200/drone/L3/ttops_secondvwfsearch_meta-08a16a/")
+predicted_trees_path = datadir("meta200/drone/L3/ttops_fullrun01/")
 
 # Maximum number of predicted trees, beyond which consider it an extremely poor tree detection and skip it
 MAX_PREDICTED_TREES = 50000
@@ -58,6 +58,19 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
   
     cat(" Evaluating", predicted_trees_filepath, "*******\n                                  ")
   
+    ## Check if already exists
+    predicted_tree_dataset_name = tools::file_path_sans_ext(basename(predicted_trees_filepath))
+    output_filename = paste0("stats_",predicted_tree_dataset_name,".csv")
+    # Create alternate filename that is used as a placholeder when we don't actually process the dataset, to mark that we condiered processing it and decided to skip it (so when we rerun, we don't try again)
+    output_filename_placeholder = paste0("stats_",predicted_tree_dataset_name,".placeholder_txt")
+    output_filepath = paste0(output_dir, "/tree_detection_evals/", output_filename)
+    output_filepath_placeholder = paste0(output_dir, "/tree_detection_evals/", output_filename_placeholder)
+
+    if(file.exists(output_filepath) | file.exists(output_filepath_placeholder)) {
+      cat("Stats file already exists:", output_filepath, ", skipping.\n")
+      return(TRUE)
+    }
+
     
     ### Check for a reasonable number of predicted trees and skip if unreasonable
     
@@ -67,6 +80,7 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
     # If there is > MAX_PREDICTED_TREES, it's an unrealistic tree detection; skip
     if(nrow(predicted_trees) > MAX_PREDICTED_TREES) {
       cat("@@@@@@ Over", MAX_PREDICTED_TREES, "predicted trees. Skipping. @@@@@@\n")
+      write_file("Placeholder text", output_filepath_placeholder)
       return(FALSE)
     }
 
@@ -89,12 +103,14 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
     # If overpredicting by a factor of 8 or more, skip (trying to compute accuracy for huge ttop datasets is very slow)
     if(overprediction_factor > 8) {
       cat("@@@@@@ Too many trees predicted (overprediction factor: ", overprediction_factor, "). Skipping. @@@@@@\n")
+      write_file("Placeholder text", output_filepath_placeholder)
       return(FALSE)
     }
     
     # If underpredicting by a factor of 0.05 or smaller, skip (functions don't work when there are no trees)
     if(overprediction_factor < 0.05) {
       cat("@@@@@@ Too few trees predicted (overprediction factor: ", overprediction_factor, "). Skipping. @@@@@@\n")
+      write_file("Placeholder text", output_filepath_placeholder)
       return(FALSE)
     }
     
@@ -135,7 +151,7 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
 
 predicted_ttop_files = list.files(predicted_trees_path, full.names = TRUE, pattern = "gpkg$")
 
-plan(multisession)
-furrr_options(scheduling = Inf)
-future_walk(predicted_ttop_files, eval_one_predicted_set)
+#plan(multisession)
+#furrr_options(scheduling = Inf)
+walk(predicted_ttop_files, eval_one_predicted_set)
 
