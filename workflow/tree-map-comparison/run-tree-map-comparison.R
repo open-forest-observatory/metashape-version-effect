@@ -151,7 +151,7 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
 
 predicted_ttop_files = list.files(predicted_trees_path, full.names = TRUE, pattern = "gpkg$")
 
-#plan(multisession)
-#furrr_options(scheduling = Inf)
+plan(multisession)
+furrr_options(scheduling = Inf)
 walk(predicted_ttop_files, eval_one_predicted_set)
 
