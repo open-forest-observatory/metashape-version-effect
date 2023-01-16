@@ -153,5 +153,5 @@ predicted_ttop_files = list.files(predicted_trees_path, full.names = TRUE, patte
 
 plan(multisession)
 furrr_options(scheduling = Inf)
-walk(predicted_ttop_files, eval_one_predicted_set)
+future_walk(predicted_ttop_files, eval_one_predicted_set)
 
