@@ -53,7 +53,7 @@ d = d |>
 d_fig = d |>
   filter(canopy_position == "all",
          height_cat == "10+", 
-         chm_smooth == 11,
+         chm_smooth == 3,
          meta_config == "16a") %>%
   mutate(f_score = as.numeric(f_score),
          vwf_intercept = as.numeric(vwf_intercept),
@@ -78,3 +78,118 @@ d_summ = d |>
          height_cat == "10+") |>
   group_by(meta_config) |>
   summarize(max_f = max(f_score))
+
+
+
+## Metashape paramsets vs processing time
+
+## For each paramset, get max processing time across all VWFs
+
+
+
+
+
+
+## Best Metashape paramesets:
+# Which one was best, or within 0.01 F of the best, for each height class and canopy position category?
+
+## For each category, what's the highest F?
+# Which metashape configs came within 0.01 of it?
+
+canopy_positions = c("overstory","all")
+height_cats = c("10+", "20+")
+
+best_configs = list()
+for(can_pos in canopy_positions) {
+  for(ht_cat in height_cats) {
+    
+    config = paste(can_pos, ht_cat, sep="_")
+    
+    best_configs[[config]] = d |>
+      filter(canopy_position == can_pos,
+             height_cat == ht_cat) |>
+      group_by(meta_config) |>
+      summarize(max_f = max(f_score)) |>
+      arrange(-max_f) |>
+      filter(max_f > (max(max_f) - 0.01)) |>
+      pull(meta_config)
+    
+  }
+}
+
+# Which metashape set comes up the most often across these four scenarios?
+
+set_freq = unlist(best_configs) |> table() |> sort(decreasing = TRUE)
+set_freq
+
+## Get the metashape sets that come up as best in at least 2 of the 4 tree height x canopy class scenarios
+best_metashape = names(set_freq)[set_freq >= 2]
+
+
+
+#### Get run time for each metashape configs
+
+config_files = list.files(datadir("meta200/drone/L1/"), pattern="_log.txt$", full.names=TRUE)
+
+config_file = config_files[1]
+
+durations_df = data.frame()
+for(config_file in config_files) {
+  
+  # get the config name
+  file_minus_extension = str_sub(config_file,1,-5)
+  fileparts = str_split(file_minus_extension,fixed("/"))[[1]]
+  file_name = fileparts[length(fileparts)] #take the last part of the path (the filename)
+  config_name = str_split(file_name, "_")[[1]][3]
+  
+  config_descr = str_split(file_name, "_")[[1]][3:8] |> paste(collapse="_")
+  
+  lines = read_lines(config_file)
+  start_time = lines[3] |> str_sub(21,-1)
+  end_time = lines[16] |> str_sub(16,-1)
+  
+  format = '%Y%m%dT%H%M'
+  
+  start = strptime(start_time, format = format)
+  end = strptime(end_time, format = format)
+  duration_hrs = interval(as_datetime(start), as_datetime(end)) / hours(1)
+  
+  ortho1 = str_sub(lines[14], 20, -1) |> as.numeric()
+  ortho2 = str_sub(lines[15], 20, -1) |> as.numeric()
+  ortho_duration_hrs = (ortho1 + ortho2) / 60 / 60
+  duration_excl_ortho = duration_hrs - ortho_duration_hrs
+  
+  duration_df = data.frame(config = config_name, config_descr = config_descr, duration = duration_excl_ortho)
+  
+  durations_df = bind_rows(durations_df, duration_df)
+}
+
+
+## Prepare a DF of the meanings of the metashape codes
+
+# get unique metashape IDs
+
+d = d %>%
+  mutate(metashape_id = str_split("_"), |> )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## To narrow down the VWF sets that are the best, or within 0.01 of the best, across all of the best metashape configs
+## For all Metashape set that are within 0.01 of the best F in at least 2 of the 4 tree height / canopy class scenarios, which VWF paramsets are within 0.01 of the best?
+
+
+# Within that set, get all the VWFs that gave within 0.01 of the best VWF
