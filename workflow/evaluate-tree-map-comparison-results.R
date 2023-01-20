@@ -12,7 +12,7 @@ data_dir = readLines(here("data-dir.txt"), n=1)
 source(here("workflow/convenience-functions.R"))
 
 # Folder with all the stats to compare
-eval_stats_dir = datadir("meta200/itd-eval-fullrun01/tree_detection_evals")
+eval_stats_dir = datadir("meta200/itd-eval-fullrun02/tree_detection_evals")
 
 #### Open all the CSVs and merge to one table
 eval_stats_files = list.files(eval_stats_dir, pattern="csv$", full.names=TRUE)
@@ -39,11 +39,13 @@ plan(multisession)
 d = future_map_dfr(batch_idxs, open_csvs)
 
 
-# Get the VWF parameter values
+# Get the VWF/lmf parameter values
 d = d |>
-  mutate(vwf_intercept = predicted_tree_dataset_name %>% str_split("_") |> map_vec(12) |> as.numeric(),
-         vwf_slope = predicted_tree_dataset_name %>% str_split("_") |> map_vec(13) |> as.numeric(),
-         chm_smooth = predicted_tree_dataset_name %>% str_split("_") |> map_vec(16) |> as.numeric(),
+  mutate(method = predicted_tree_dataset_name %>% str_split("_") |> map_vec(12),
+         vwf_intercept = predicted_tree_dataset_name %>% str_split("_") |> map_vec(13) |> as.numeric(),
+         vwf_slope = predicted_tree_dataset_name %>% str_split("_") |> map_vec(14) |> as.numeric(),
+         window_min = predicted_tree_dataset_name %>% str_split("_") |> map_vec(15) |> as.numeric(),
+         chm_smooth = predicted_tree_dataset_name %>% str_split("_") |> map_vec(17) |> as.numeric(),
          meta_config = predicted_tree_dataset_name %>% str_split("_") |> map_vec(4),
          sens_prec_diff = abs(sensitivity - precision)) |>
   arrange(vwf_intercept, vwf_slope, chm_smooth)
@@ -51,10 +53,12 @@ d = d |>
 ## Plot F vs parameter vals for all trees, 10+ m, for a specific metashape config, specific smooth
 
 d_fig = d |>
-  filter(canopy_position == "all",
+  filter(method == "lmf",
+         window_min == .5,
+         canopy_position == "overstory",
          height_cat == "10+", 
-         chm_smooth == 3,
-         meta_config == "16a") %>%
+         chm_smooth == 0,
+         meta_config == "10a") %>%
   mutate(f_score = as.numeric(f_score),
          vwf_intercept = as.numeric(vwf_intercept),
          vwf_slope = as.numeric(vwf_slope))
