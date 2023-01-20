@@ -39,15 +39,15 @@ neg_smooths = c(0, 3, 7, 11)
 ft_method = "vwf"
 ft_intercepts = seq(0, 0.4, by = 0.2)
 ft_slopes = seq(0.02, 0.06, by = 0.02)
-ft_window_mins = 0
+ft_window_mins = c(0.0001, 1)
 ft_window_maxs = 0
 ft_smooths = c(0, 3, 7, 11)
 
 # A VWF set with negative intercepts
 neg_ft_method = "vwf"
-neg_ft_intercepts = seq(0, -1, by = -0.5)
-neg_ft_slopes = seq(0.03,0.08, by = 0.02)
-neg_ft_window_mins = 0
+neg_ft_intercepts = seq(0, -0.4, by = -0.2)
+neg_ft_slopes = seq(0.04,0.08, by = 0.02)
+neg_ft_window_mins = c(0.0001, 1)
 neg_ft_window_maxs = 0
 neg_ft_smooths = c(0, 3, 7, 11)
 
@@ -92,10 +92,10 @@ pad_3dec = function(x) {
 make_vwf <- function(method, intercept, slope, window_min, window_max) { 
   vwf = function(x) {
     y = intercept + slope*x 
-    if(method == "lmf") { # When running ForestTools::vwf, don't set floor or ceiling
+    #if(method == "lmf") { # When running ForestTools::vwf, don't set floor or ceiling
       y = pmax(y, window_min, na.rm=TRUE) # for lidR::lmf, can't go smaller than chm resolution (chm resolution is 0.12 m)
       y = pmin(y, window_max, na.rm=TRUE)
-    }
+    #}
     return(y)
   }
   return(vwf)
@@ -150,6 +150,10 @@ itd_onechm_allvwfs = function(chm_file) {
       return(TRUE)
     }
     
+    cat("\nStarting to to process for non-existing file:", filename,"\n")
+    
+    browser()
+    
     variable_window_function = make_vwf(method = focal_vwfparams$method, intercept = focal_vwfparams$intercept, slope = focal_vwfparams$slope, window_min = focal_vwfparams$window_min, window_max = focal_vwfparams$window_max)
     
     ## load the right CHM
@@ -187,22 +191,24 @@ if(!dir.exists(ttops_dir)) dir.create(ttops_dir, recursive=TRUE)
 
 # Create factorial combo of vwf params
 vwfparams_lidr = expand.grid(method = method, intercept = intercepts,slope = slopes, window_min = window_mins, window_max = window_maxs, smooth = smooths)
-vwfparams_lidr_negintercept = expand.grid(method = method, intercept = neg_intercepts,slope = neg_slopes, window_min = neg_window_mins, window_max = neg_window_maxs, smooth = neg_smooths)
-vwfparams_foresttools = expand.grid(method = method, intercept = ft_intercepts,slope = ft_slopes, window_min = ft_window_mins, window_max = ft_window_maxs, smooth = ft_smooths)
-vwfparams_foresttools_negintercept = expand.grid(method = method, intercept = neg_ft_intercepts,slope = neg_ft_slopes, window_min = neg_ft_window_mins, window_max = neg_ft_window_maxs, smooth = neg_ft_smooths)
+vwfparams_lidr_negintercept = expand.grid(method = neg_method, intercept = neg_intercepts,slope = neg_slopes, window_min = neg_window_mins, window_max = neg_window_maxs, smooth = neg_smooths)
+vwfparams_foresttools = expand.grid(method = ft_method, intercept = ft_intercepts,slope = ft_slopes, window_min = ft_window_mins, window_max = ft_window_maxs, smooth = ft_smooths)
+vwfparams_foresttools_negintercept = expand.grid(method = neg_ft_method, intercept = neg_ft_intercepts,slope = neg_ft_slopes, window_min = neg_ft_window_mins, window_max = neg_ft_window_maxs, smooth = neg_ft_smooths)
 vwfparams = bind_rows(vwfparams_lidr, vwfparams_lidr_negintercept, vwfparams_foresttools, vwfparams_foresttools_negintercept)
 vwfparams$id = 1:nrow(vwfparams)
 
 vwfparams = vwfparams[!(vwfparams$intercept == 0 & vwfparams$slope == 0),] # remove ones with intercept and slope both == 0
+
+vwfparams = vwfparams[rev(1:nrow(vwfparams)),] # reverse to do the ForestTools sets first
 
 # Load the CHM files to use for ITD
 chm_files = list.files(datadir("meta200/drone/L2"), pattern="chm.tif", full.names=TRUE)
 # FOR TESTING: chm_files = chm_files[c(5,37)]
 chm_files_list = as.list(chm_files)
 
-set_lidr_threads(1) # Set to 1 because we're going to parallelize across ITD runs, not within them (the latter has more overhead of reading/writing files that isn't parallelized)
+set_lidr_threads(4) # Set to 1 because we're going to parallelize across ITD runs, not within them (the latter has more overhead of reading/writing files that isn't parallelized)
 
 # Run in parallel
 furrr_options(scheduling = Inf)
 plan(multisession)
-future_walk(chm_files_list[33:48],itd_onechm_allvwfs)
+walk(chm_files_list,itd_onechm_allvwfs)
