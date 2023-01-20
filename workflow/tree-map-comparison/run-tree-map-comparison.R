@@ -28,10 +28,10 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-eval-fullrun01")
+output_dir = datadir("meta200/itd-eval-fullrun02")
 
 # Location of the predicted tree maps to evaluate
-predicted_trees_path = datadir("meta200/drone/L3/ttops_fullrun01/")
+predicted_trees_path = datadir("meta200/drone/L3/ttops_fullrun02/")
 
 # Maximum number of predicted trees, beyond which consider it an extremely poor tree detection and skip it
 MAX_PREDICTED_TREES = 50000
