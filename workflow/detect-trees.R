@@ -29,8 +29,8 @@ smooths = c(0, 3, 7, 11)
 
 # A lidR LMF set with negative intercepts
 neg_method = "lmf"
-neg_intercepts = seq(0, -1, by = -0.5)
-neg_slopes = seq(0.05,0.14, by = 0.02)
+neg_intercepts = seq(0, -2, by = -0.5)
+neg_slopes = seq(0.05,0.24, by = 0.02)
 neg_window_mins = c(0.5, 1, 2)
 neg_window_maxs = 100
 neg_smooths = c(0, 3, 7, 11)
@@ -40,7 +40,7 @@ ft_method = "vwf"
 ft_intercepts = seq(0, 0.4, by = 0.2)
 ft_slopes = seq(0.02, 0.06, by = 0.02)
 ft_window_mins = c(0.0001, 1)
-ft_window_maxs = 0
+ft_window_maxs = 100
 ft_smooths = c(0, 3, 7, 11)
 
 # A VWF set with negative intercepts
@@ -48,7 +48,7 @@ neg_ft_method = "vwf"
 neg_ft_intercepts = seq(0, -0.4, by = -0.2)
 neg_ft_slopes = seq(0.04,0.08, by = 0.02)
 neg_ft_window_mins = c(0.0001, 1)
-neg_ft_window_maxs = 0
+neg_ft_window_maxs = 100
 neg_ft_smooths = c(0, 3, 7, 11)
 
 
@@ -116,7 +116,7 @@ itd_onechm_allvwfs = function(chm_file) {
   n_ttop_output_files_actual = sum(grepl(chm_name, ttops_dir_contents))
   
   if(n_ttop_output_files_actual == n_ttop_output_files_expected) {
-    cat("CHM already processed:", chm_name, " -- Skipping.")
+    cat("\nCHM already processed:", chm_name, " -- Skipping.")
     return(TRUE)
   }
   
@@ -146,13 +146,11 @@ itd_onechm_allvwfs = function(chm_file) {
     
     ## Does the output exist already? Skip if so
     if((file_path %in% ttops_dir_contents) | (filepath_placeholder %in% ttops_dir_contents)) {
-      cat("File", file_path, "already exists. Skipping.")
+      cat("\nFile", file_path, "already exists. Skipping.")
       return(TRUE)
     }
     
     cat("\nStarting to to process for non-existing file:", filename,"\n")
-    
-    browser()
     
     variable_window_function = make_vwf(method = focal_vwfparams$method, intercept = focal_vwfparams$intercept, slope = focal_vwfparams$slope, window_min = focal_vwfparams$window_min, window_max = focal_vwfparams$window_max)
     
@@ -206,9 +204,9 @@ chm_files = list.files(datadir("meta200/drone/L2"), pattern="chm.tif", full.name
 # FOR TESTING: chm_files = chm_files[c(5,37)]
 chm_files_list = as.list(chm_files)
 
-set_lidr_threads(4) # Set to 1 because we're going to parallelize across ITD runs, not within them (the latter has more overhead of reading/writing files that isn't parallelized)
+set_lidr_threads(2) # Set to 1 because we're going to parallelize across ITD runs, not within them (the latter has more overhead of reading/writing files that isn't parallelized)
 
 # Run in parallel
 furrr_options(scheduling = Inf)
 plan(multisession)
-walk(chm_files_list,itd_onechm_allvwfs)
+future_walk(chm_files_list,itd_onechm_allvwfs)
