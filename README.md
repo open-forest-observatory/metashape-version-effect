@@ -28,4 +28,12 @@ Run a drone photo set from Emerald Point through Metashape photogrammetry using 
 
 **Note:** Depending on how many tree detection parameter sets are searched, tree detection can produce thousands of ttop .gpkg files. These take up a lot of space, and the many small files are slow to transfer to external storage providers. Therefore, I have been zipping these folders after the outputs are processed by the downstream step (next section).
 
+### Validate treetops and compile validation results
 
+**Compare all the sets of ttops against the Emerald Point stem map** and compute recall (sensitivity), precision, F score, height accuracy, and many other metrics. Performed by `workflow/tree-map-comparison/run-tree-map-comparison.R` with many functions defined in the `lib` subfolder. Saves outputs to `{data}meta200/itd-evals/{evaluation-name}`, as one csv per ttop `.gpkg` file. **Note:** The many small files are slow to transfer to external storage providers. Therefore, I have been zipping these folders after the outputs are processed by the downstream step (next paragraph).
+
+**Compile all the comparison results** (separate csv file for each ttop file) into a single big CSV using `workflow/compile-tree-map-comparison-results.R`.
+
+### Evaluate the validation results
+
+**Evaluate the results** and make inferences regarding the best photogrammetry and tree detection parameters. Performed by `workflow/evaluate-tree-map-comparison-results.R` which is currently only partially functional (intended as a demo of some things that are possible) and meant to be run interactively.
