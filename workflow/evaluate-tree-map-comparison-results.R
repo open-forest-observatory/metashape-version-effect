@@ -2,6 +2,7 @@ library(sf)
 library(tidyverse)
 library(here)
 library(furrr)
+library(lubridate)
 
 #### Get data dir ####
 # The root of the data directory
@@ -11,33 +12,9 @@ data_dir = readLines(here("data-dir.txt"), n=1)
 # Most importantly, this defines a function 'datadir' that prepends any relative file path with the absolute path to the data directory (specified in data-dir.txt)
 source(here("workflow/convenience-functions.R"))
 
-# Folder with all the stats to compare
-eval_stats_dir = datadir("meta200/itd-eval-fullrun02/tree_detection_evals")
-
-#### Open all the CSVs and merge to one table
-eval_stats_files = list.files(eval_stats_dir, pattern="csv$", full.names=TRUE)
-
-## Need to open the CSVs in batches because the OS does not allow to open these thousands of files at once
-
-nfiles = length(eval_stats_files)
-max_batchsize = 1000 # number of csv files to open at once
-nbatches = ceiling(nfiles/max_batchsize)
-batch_idxs = 1:nbatches
-
-open_csvs = function(batch_idx) {
-  
-  min_idx = (max_batchsize * batch_idx - max_batchsize + 1)
-  max_idx = min(c(max_batchsize * batch_idx, nfiles))
-  file_idxs = min_idx:max_idx
-  eval_stats_files_foc = eval_stats_files[file_idxs]
-  
-  d_part = read_csv(eval_stats_files_foc)
-  
-}
-
-plan(multisession)
-d = future_map_dfr(batch_idxs, open_csvs)
-
+## Read in the table of tree map evals
+d = read_csv(datadir("meta200/itd-evals/compiled/fullrun02.csv"))
+#d = read_csv(datadir("meta200/itd-evals/compiled/dpf-ttops-run01.csv"))
 
 # Get the VWF/lmf parameter values
 d = d |>
@@ -54,8 +31,8 @@ d = d |>
 
 d_fig = d |>
   filter(method == "lmf",
-         window_min == .5,
-         canopy_position == "overstory",
+         window_min == 2,
+         canopy_position == "all",
          height_cat == "10+", 
          chm_smooth == 0,
          meta_config == "10a") %>%
@@ -100,8 +77,8 @@ d_summ = d |>
 ## For each category, what's the highest F?
 # Which metashape configs came within 0.01 of it?
 
-canopy_positions = c("overstory","all")
-height_cats = c("10+", "20+")
+canopy_positions = c("overstory") #c("all", "overstory")
+height_cats = c("10+") #c("10+", "20+")
 
 best_configs = list()
 for(can_pos in canopy_positions) {
@@ -172,10 +149,6 @@ for(config_file in config_files) {
 ## Prepare a DF of the meanings of the metashape codes
 
 # get unique metashape IDs
-
-d = d %>%
-  mutate(metashape_id = str_split("_"), |> )
-
 
 
 
