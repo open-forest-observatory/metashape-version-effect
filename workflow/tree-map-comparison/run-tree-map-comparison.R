@@ -28,7 +28,7 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-eval-dpf-ttops-run01")
+output_dir = datadir("meta200/itd-evals/itd-eval-dpf-ttops-run01")
 
 # Location of the predicted tree maps to evaluate
 predicted_trees_path = datadir("meta200/drone/L3/dpf-ttops_run01/")
