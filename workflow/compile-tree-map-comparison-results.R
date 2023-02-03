@@ -14,10 +14,10 @@ data_dir = readLines(here("data-dir.txt"), n=1)
 source(here("workflow/convenience-functions.R"))
 
 # Folder with all the stats to compare
-eval_stats_dir = datadir("meta200/itd-evals/itd-eval-dpf-ttops-run01/tree_detection_evals")
+eval_stats_dir = datadir("meta200/itd-evals/itd-eval-dpf-ttops-run01v2/tree_detection_evals")
 
 # Where to save the compiled evals?
-compiled_evals_outfile = datadir("meta200/itd-evals/compiled/dpf-ttops-run01.csv")
+compiled_evals_outfile = datadir("meta200/itd-evals/compiled/ttops-dpfrun01v2.csv")  # compiled_evals_outfile = datadir("meta200/itd-evals/compiled/dpf-ttops-run01.csv")
 
 if(!dir.exists(dirname(compiled_evals_outfile))) {
   dir.create(dirname(compiled_evals_outfile))

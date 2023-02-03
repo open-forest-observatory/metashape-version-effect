@@ -24,6 +24,7 @@ write_csv_to_dir = function(dataframe, output_dir, output_filename) {
 combine_stats <- function(tmp_dir,
                           output_dir,
                           predicted_trees_filepath) {
+  
     predicted_tree_dataset_name <-
         tools::file_path_sans_ext(basename(predicted_trees_filepath))
 

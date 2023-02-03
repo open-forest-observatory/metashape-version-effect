@@ -28,7 +28,7 @@ plot_bound_filepath =  datadir("study-area-perimeter/ground_map_mask_precise.geo
 
 # Location of temp directory (holds intermediate files between the comparison steps) and the directory for comparison outputs
 tmp_dir = datadir("temp")
-output_dir = datadir("meta200/itd-evals/itd-eval-fullrun02v2")
+output_dir = datadir("meta200/itd-evals/itd-eval-fullrun02v3")
 
 # Location of the predicted tree maps to evaluate
 predicted_trees_path = datadir("meta200/drone/L3/ttops_fullrun02/")
@@ -144,16 +144,16 @@ eval_one_predicted_set = function(predicted_trees_filepath) {
                 output_dir = output_dir,
                 predicted_trees_filepath = predicted_trees_filepath)
   
-  # This function compares the heights of paired predicted and observed trees and makes a height correspondence scatterplot and saves it in output_dir/correlation_figures
-  make_height_corr_plots(output_dir = output_dir,
-                         predicted_trees_filepath = predicted_trees_filepath)
+  # # This function compares the heights of paired predicted and observed trees and makes a height correspondence scatterplot and saves it in output_dir/correlation_figures
+  # make_height_corr_plots(output_dir = output_dir,
+  #                        predicted_trees_filepath = predicted_trees_filepath)
   
 }
 
 
 predicted_ttop_files = list.files(predicted_trees_path, full.names = TRUE, pattern = "gpkg$")
 
-plan(multisession)
-furrr_options(chunk_size = 10)
+plan(multisession(workers=63))
+furrr_options(scheduling = Inf)
 future_walk(predicted_ttop_files, eval_one_predicted_set)
 

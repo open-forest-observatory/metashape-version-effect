@@ -13,7 +13,8 @@ data_dir = readLines(here("data-dir.txt"), n=1)
 source(here("workflow/convenience-functions.R"))
 
 ## Read in the table of tree map evals
-d = read_csv(datadir("meta200/itd-evals/compiled/fullrun02.csv"))
+d = read_csv(datadir("meta200/itd-evals/compiled/ttops-dpfrun01v2.csv"))
+d = read_csv(datadir("meta200/itd-evals/compiled/ttops-fullrun02v3.csv"))
 #d = read_csv(datadir("meta200/itd-evals/compiled/dpf-ttops-run01.csv"))
 
 # Get the VWF/lmf parameter values
@@ -30,7 +31,7 @@ d = d |>
 ## Plot F vs parameter vals for all trees, 10+ m, for a specific metashape config, specific smooth
 
 d_fig = d |>
-  filter(method == "lmf",
+  filter(method == "dpf",
          window_min == 2,
          canopy_position == "all",
          height_cat == "10+", 
